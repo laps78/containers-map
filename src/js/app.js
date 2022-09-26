@@ -1,6 +1,20 @@
 // TODO: write your code here
-import sum from './basic';
+export default class ErrorRepository {
+  constructor() {
+    this.errMap = new Map();
+  }
 
-console.log('worked');
+  set(code, description) {
+    this.errMap.set(code, description);
+  }
 
-console.log(sum([1, 2]));
+  translate(code) {
+    let result;
+    if (this.errMap.has(code)) {
+      result = this.errMap.get(code);
+    } else {
+      result = 'Unknown error';
+    }
+    return result;
+  }
+}
